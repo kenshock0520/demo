@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+  demo-db:
+    image: microsoft/mssql-server-linux:2017-GA
+    volumes:
+      - demo-db-data:/var/opt/mssql/
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: P@ssw0rd!
+    ports:
+      - "1433:1433"
+volumes:
+  demo-db-data:
+    driver: local

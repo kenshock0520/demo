@@ -1,0 +1,32 @@
+docker start
+docker-compose up -d
+
+docker check
+docker ps -a
+
+container login
+docker exec -it docker_demo-db_1 "bash"
+
+DB use command
+use DemoDB
+
+SQL sample
+
+-- Drop table
+
+-- DROP TABLE DemoDB.dbo.members GO
+
+CREATE TABLE DemoDB.dbo.members (
+	id int NOT NULL,
+	first_name varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	last_name varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	age int NULL,
+	CONSTRAINT members_PK PRIMARY KEY (id)
+) GO
+
+
+INSERT INTO DemoDB.dbo.members (id, first_name, last_name, age) VALUES
+(1, 'Jim', 'Taylor', 34),
+(2, 'John', 'McGregor', 23),
+(3, 'Alice', 'Anderson', 33) 
+GO
