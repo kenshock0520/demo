@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>top page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+test
+  <p th:text="${msg}" /> 
+<a th:href="@{'/demo/test/create'}">create</a>
+<br>
+<a th:href="@{'/demo/test/deleteAll'}">deleteAll</a>
+<table border="1">
+<tr>
+<th>id</th><th>products</th><th>command</th>
+</tr>
+<tr th:each="test : ${tests}">
+    <td th:text="${test.id}"></td>
+    <td th:text="${test.products}"></td>
+    <td><a th:href="@{'/demo/test/detail?id=' + ${test.id}}">detail</a>　<a th:href="@{'/demo/test/delete?id=' + ${test.id}}">delete</a></td>
+</tr>
+</table>
+  
+</body>
+</html>

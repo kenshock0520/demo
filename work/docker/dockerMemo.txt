@@ -22,11 +22,17 @@ CREATE TABLE DemoDB.dbo.members (
 	last_name varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	age int NULL,
 	CONSTRAINT members_PK PRIMARY KEY (id)
-) GO
+);
 
 
 INSERT INTO DemoDB.dbo.members (id, first_name, last_name, age) VALUES
 (1, 'Jim', 'Taylor', 34),
 (2, 'John', 'McGregor', 23),
-(3, 'Alice', 'Anderson', 33) 
-GO
+(3, 'Alice', 'Anderson', 33);
+
+
+CREATE TABLE DemoDB.dbo.test (
+	id int NOT NULL,
+	products varchar(10),
+	CONSTRAINT test_PK PRIMARY KEY (id)
+);

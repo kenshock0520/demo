@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>top page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <form role="form" th:action="@{/demo/test/update}" th:object="${testForm}" method="post">
+  <div class="form-group">
+    id:<input type="text" class="form-control" id="id" name="id" th:field="*{id}" />
+    <br>
+    products:<input type="text" class="form-control" id="products" name="products" th:field="*{products}" />
+  </div>
+  <input type="hidden" name="mode" th:value="*{mode}" />
+  <button type="submit" class="btn btn-default">実行</button>
+  </form>
+</body>
+</html>
