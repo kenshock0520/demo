@@ -36,3 +36,9 @@ CREATE TABLE DemoDB.dbo.test (
 	products varchar(10),
 	CONSTRAINT test_PK PRIMARY KEY (id)
 );
+
+CREATE PROCEDURE testProcedure
+AS
+        DELETE
+        FROM    test
+RETURN;
