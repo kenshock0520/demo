@@ -1,8 +1,13 @@
 package com.example.demo.domain.service;
 
+import java.util.Collections;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.entity.Test;
@@ -14,8 +19,16 @@ public class TestService {
 	@Autowired
 	TestMapper testMapper;
 
-	public List<Test> getTestAll() {
-		return testMapper.getTestAll();
+	public Page<Test> getTestAll(Pageable pageable) {
+		long total = testMapper.count();
+		List<Test> test;
+		if (0 < total) {
+			RowBounds rowBounds = new RowBounds((int) pageable.getOffset(), pageable.getPageSize());
+			test = testMapper.getTestAll(rowBounds);
+		} else {
+			test = Collections.emptyList();
+		}
+		return new PageImpl<>(test, pageable, total);
 	}
 
 	public Test getTestById(int id) {

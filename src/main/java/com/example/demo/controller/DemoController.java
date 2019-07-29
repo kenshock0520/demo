@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,10 +41,24 @@ public class DemoController {
 	}
 
 	@RequestMapping(value = "test/testList", method = RequestMethod.GET)
-	public String mybatis(Model model) {
-		List<Test> tests = testService.getTestAll();
+	public String mybatis(Model model, @PageableDefault(page = 0, value = 2) Pageable pageable) {
+		System.out.println("aaadfd" + pageable);
+		Page<Test> tests = testService.getTestAll(pageable);
 		model.addAttribute("msg", "list");
-		model.addAttribute("tests", tests);
+		model.addAttribute("page", tests);
+		model.addAttribute("url", "/test/testList");
+
+		return "test/testList";
+	}
+
+	@RequestMapping(value = "test/paging", method = RequestMethod.GET)
+	public String mybatis(@RequestParam("page") String page, Model model,
+			@PageableDefault(page = 0, value = 2) Pageable pageable) {
+		System.out.println("aaadfd" + pageable);
+		Page<Test> tests = testService.getTestAll(pageable);
+		model.addAttribute("msg", "list");
+		model.addAttribute("page", tests);
+		model.addAttribute("url", "/test/testList");
 
 		return "test/testList";
 	}
