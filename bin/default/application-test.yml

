@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: test
+
+---
+
+spring:
+  profiles: test
+
+  datasource:
+    url: jdbc:h2:mem:sampledb;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTOCOMMIT=OFF
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver

@@ -1,0 +1,1 @@
+INSERT INTO test (id, products) VALUES (1,'test');
