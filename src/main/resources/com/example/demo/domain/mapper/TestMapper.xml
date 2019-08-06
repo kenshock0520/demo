@@ -7,7 +7,7 @@
         INSERT INTO test (id, products) VALUES (#{id}, #{products})
     </insert>
     <select id="select" resultType="com.example.demo.domain.entity.Test">
-        SELECT id, products FROM test WHERE id = #{id}
+        SELECT id, products FROM junitTest WHERE id = #{id}
     </select>
     <update id="update">
         UPDATE test SET products = #{products} WHERE id = #{id}
