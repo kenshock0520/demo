@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>top page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+test
+  <p th:text="${msg}" /> 
+<a th:href="@{'/multiLine/create'}">create</a>
+<br>
+<a th:href="@{'/multiLine/deleteAll'}">deleteAll</a>
+<table border="1">
+<tr>
+<th>id</th><th>products</th><th>command</th>
+</tr>
+<tr th:each="test : ${page}">
+    <td th:text="${test.id}"></td>
+    <td th:text="${test.products}"></td>
+    <td><a th:href="@{'/multiLine/detail?id=' + ${test.id}}">detail</a>
+    <a th:href="@{'/multiLine/delete?id=' + ${test.id}}">delete</a></td>
+</tr>
+</table>
+<div class="col-md-6 col-md-offset-3" id="paging" th:if="!${#lists.isEmpty(page)}" th:fragment='paginationbar'>
+ 
+    <ul class="pagination">
+ 
+        <li th:class="${page.first} ? 'disabled':''" style="display:inline">
+ 
+        	<span th:if="${page.first}" ><<</span>
+ 
+            <span th:if="${page.first}" ><</span>
+ 
+        	<a th:if="${!page.first}" th:href="@{/demo/test/paging(page=0)}"><<</a>
+ 
+            <a th:if="${!page.first}" th:href="@{/demo/test/paging(page=(${page.number}-1))}"><</a>
+ 
+        </li>
+ 
+        <li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})? 'active' : ''" style="display:inline">
+ 
+            <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+ 
+            <a th:if='${i}!=${page.number}' th:href="@{/demo/test/paging(page=${i})}">
+ 
+                <span th:text='${i+1}'>1</span>
+ 
+            </a>
+ 
+        </li>
+ 
+        <li th:class="${page.last} ? 'disabled':''" style="display:inline">
+ 
+        	<span th:if="${page.last}" >></span>
+ 
+            <span th:if="${page.last}" >>></span>
+ 
+            <a th:if="${!page.last}" th:href="@{/demo/test/paging(page=(${page.number}+1))}">></a>
+ 
+            <a th:if="${!page.last}" th:href="@{/demo/test/paging(page=(${page.totalPages}-1))}">>></a>
+ 
+        </li>
+ 
+    </ul>
+ 
+</div>
+  
+</body>
+</html>
